@@ -4,14 +4,36 @@ const swaggerDefinition = {
   openapi: "3.0.0",
   info: {
     title: "Authentication-module-API's",
-    version: "0.0.1",
-    description: "User can register himself using through this API",
+    version: "1.0.0",
+    description: "User Authentication and Management API Documentation",
+    contact: {
+      name: "API Support",
+      email: "support@example.com"
+    }
   },
+  servers: [
+    {
+      url: "http://localhost:3000",
+      description: "Development server"
+    }
+  ],
+  components: {
+    securitySchemes: {
+      BearerAuth: {
+        type: "http",
+        scheme: "bearer",
+        bearerFormat: "JWT"
+      }
+    }
+  }
 };
 
 const options = {
   swaggerDefinition,
-  apis: ["./routes/*.js"], // Path to the API routes in your Node.js application
+  apis: [
+    "./docs/swagger/*.js", 
+    "./routes/*.js" 
+  ],
 };
 
 const swaggerSpec = swaggerJSDoc(options);
